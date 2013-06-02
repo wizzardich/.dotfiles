@@ -1,0 +1,40 @@
+use_xft yes
+update_interval 0.6
+total_run_times 0
+double_buffer yes
+minimum_size 250 5
+maximum_width 5000
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+default_color white
+default_shade_color black
+default_outline_color green
+alignment top_left
+gap_x 20
+gap_y 30
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+net_avg_samples 1
+override_utf8_locale yes
+use_spacer yes
+imlib_cache_size 0  
+
+
+TEXT
+${voffset 15}${offset 22}${color FFA300}${font Helvetica Condensed Light:pixelsize=36}${time %H}${color EAEAEA}${voffset 29}${offset -16}${time %M}${font}${voffset -50}${color 565656}${font Helvetica Condensed Light:pixelsize=36}${offset -15}${time %A}${voffset 29}${goto 95}${time %B,}${color FFA300}${time %d}${font}
+${voffset 783}${color EAEAEA}${font Fregat:pixelsize=18}
+${image ~/.conky/images/base1.png -p 0,0 -s 220x102}
+${if_match "${mpd_status}" != "Stopped"} 
+${if_match "${mpd_status}" != "Paused"} 
+${goto 110}${mpd_artist 30}
+${color FFA300}${goto 110}${mpd_title 30}
+${color EAEAEA}${font Monospace:pixelsize=16}${goto 110}${mpd_elapsed 5}/$mpd_length${font}
+${execi 2 ~/.conky/mpd_album.py}
+${image ~/.conky/images/base1.png -p 0,925 -s 340x102}
+${image /tmp/mpd.jpg -s 60x60 -p 20,947 } 
+$endif
+$endif
+${font}
